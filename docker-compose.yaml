@@ -1,0 +1,103 @@
+version: '3'
+
+services:
+    
+    stub:
+        build: 
+            context: .
+            dockerfile: Dockerfile.stub 
+        image: williamsimoni/stub_image
+        restart: unless-stopped 
+        env_file: .env
+        ports: 
+            - "7777:7777"
+        networks: 
+            - FiBo
+    
+    calculator:
+        build:
+            context: .
+            dockerfile: Dockerfile.calculator
+        image: williamsimoni/calculator_image
+        restart: unless-stopped
+        env_file: .env
+        networks: 
+            - FiBo
+
+    alarm_finder:
+        build:
+            context: .
+            dockerfile: Dockerfile.alarmfinder
+        image: williamsimoni/alarmfinder_image
+        restart: unless-stopped
+        env_file: .env
+        networks: 
+            - FiBo
+        command: node ./alarm/alarmFinder/index.js
+    
+    alarm_sender:
+        build:
+            context: .
+            dockerfile: Dockerfile.alarmsender 
+        image: williamsimoni/alarmsender_image
+        restart: unless-stopped 
+        env_file: .env
+        ports:
+            - "7779:7779"
+        networks: 
+            - FiBo
+        command: node ./alarm/alarmSender/index.js
+        
+    influxdb:
+        container_name: influxdb
+        image: influxdb:1.8-alpine
+        restart: unless-stopped
+        environment: 
+            INFLUXDB_HTTP_AUTH_ENABLED: "true"
+            INFLUXDB_ADMIN_USER: admin
+            INFLUXDB_ADMIN_PASSWORD: admin97
+        volumes: 
+            - ./database_script/InfluxDBScript:/docker-entrypoint-initdb.d
+            - influxdb:/var/lib/influxdb
+        networks:
+            - FiBo
+            
+    postgresdb:
+        image: postgres
+        container_name: postgresdb
+        restart: unless-stopped
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: MMI40
+        volumes:     
+            - postgredb:/var/lib/postgresql/data
+            - ./database_script/postgreSQLScript:/docker-entrypoint-initdb.d
+        networks:
+            - FiBo
+        healthcheck:
+            test: [ "CMD", "pg_isready", "-q", "-d", "MMI40", "-U", "postgres" ]
+            timeout: 45s
+            interval: 10s
+            retries: 10
+    
+    pubsub:
+        image: redis:6
+        container_name: pubsub
+        command: redis-server --requirepass cX3w4f&oXd%Kk4YT
+        restart: unless-stopped
+        networks: 
+            - FiBo
+        
+
+networks:
+    FiBo:
+        driver: bridge
+
+volumes:
+    influxdb:
+    postgredb:
+
+
+
+    

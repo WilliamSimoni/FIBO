@@ -1,0 +1,29 @@
+{
+  "projectName": "esempio",
+  "timeSeries": [
+    [
+      {
+        "tag": "bathroom",
+        "value": "temp"
+      }
+    ],
+    [
+      {
+        "tag": "safe",
+        "value": "temp"
+      }
+    ]
+  ],
+  "fleet": "flt-4urixvulkwxr",
+  "aggregationFunction": "mean",
+  "timeRange": {
+    "key": "day",
+    "number": 1
+  },
+  "unit": "s",
+  "granularity": {
+    "key": "hour",
+    "number": 1
+  },
+  "store": true
+}

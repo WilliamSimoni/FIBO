@@ -1,0 +1,29 @@
+{
+  "projectName": "esempio",
+  "timeSeries": [
+    [
+      {
+        "tag": "safe",
+        "value": "temp"
+      }
+    ],
+    [
+      {
+        "tag": "safe",
+        "value": "humidity"
+      }
+    ]
+  ],
+  "fleet": "flt-4urixvulkwxr",
+  "aggregationFunction": "max",
+  "timeRange": {
+    "key": "minute",
+    "number": 32
+  },
+  "unit": "s",
+  "granularity": {
+    "key": "second",
+    "number": 15
+  },
+  "store": true
+}

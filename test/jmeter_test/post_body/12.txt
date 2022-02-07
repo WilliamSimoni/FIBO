@@ -1,0 +1,28 @@
+{
+  "projectName": "esempio",
+  "timeSeries": [
+    [
+      {
+        "tag": "kitchen",
+        "value": "powerCons"
+      },
+      {
+        "tag": "toys room",
+        "value": "powerCons"
+      }
+    ]
+  ],
+  "fleet": "flt-4uriyjhshark",
+  "aggregationFunction": "max",
+  "aggrFunPerGroup": ["sum"],
+  "timeRange": {
+    "key": "day",
+    "number": 1
+  },
+  "unit": "s",
+  "granularity": {
+    "key": "hour",
+    "number": 1
+  },
+  "store": true
+}

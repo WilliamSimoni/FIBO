@@ -1,0 +1,23 @@
+{
+  "projectName": "esempio",
+  "timeSeries": [
+    [
+      {
+        "tag": "toys room",
+        "value": "toysNumber"
+      }
+    ]
+  ],
+  "fleet": "flt-4uriyjhshark",
+  "aggregationFunction": "mean",
+  "timeRange": {
+    "key": "hour",
+    "number": 48
+  },
+  "unit": "s",
+  "granularity": {
+    "key": "minute",
+    "number": 30
+  },
+  "store": true
+}

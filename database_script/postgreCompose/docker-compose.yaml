@@ -1,0 +1,72 @@
+version: '3'
+
+services:
+    postgresDB:
+      image: postgres:latest
+      container_name: postgresDB
+      restart: unless-stopped
+      env_file: .env
+      environment:
+        - POSTGRES_USER=$MONGO_USERNAME
+        - POSTGRES_PASSWORD=$MONGO_PASSWORD
+        - POSTGRES_DB=
+      volumes:     
+        - db-data:/var/lib/postgresql/data
+        - ./postgreDumps/*:/docker-entrypoint-initdb.d/
+      networks:
+        - FiBo
+    
+
+
+        stub:
+          build:
+              context: .
+              dockerfile: Dockerfile.stub
+          image: stub
+          restart: unless-stopped
+          env_file: .env
+          environment: 
+              - NODE_ENV = $NODE_ENV
+              - PGHOST = $PGHOST
+              - PGDATABASE = $PGDATABASE
+              - PGPASSWORD = $PGPASSWORD
+              - PGPORT = $PGPORT
+              - INFLUXDBPROT = $INFLUXDBPROT
+              - INFLUXDBHOST = $INFLUXDBHOST
+              - INFLUXDBPORT = $INFLUXDBPORT
+              - INFLUXDBUSER = $INFLUXDBUSER
+              - INFLUXDBPASSWORD = $INFLUXDBPASSWORD
+              - JWT_KEY = $JWT_KEY
+              - JWT_KEY_SUPERUSER = $JWT_KEY_SUPERUSER
+              - EXPIRATION_TIME = $EXPIRATION_TIME
+              - BCRYPT_SALT = $BCRYPT_SALT
+              - STUB_PORT = $STUB_PORT
+              - STUB_HOST = $STUB_HOST
+              - STUB_PROT = $STUB_PROT
+              - CALCULATOR_PORT = $CALCULATOR_PORT
+              - CALCULATOR_HOST = $CALCULATOR_HOST
+              - CALCULATOR_PROT = $CALCULATOR_PROT
+              - ALARM_FINDER_PORT = $ALARM_FINDER_PORT
+              - ALARM_FINDER_HOST = $ALARM_FINDER_HOST
+              - ALARM_FINDER_PROT = $ALARM_FINDER_PROT
+          ports: 
+              - "7777:7777"
+          networks: 
+              - FiBo
+          command: node stub/index.js
+
+          postgresDB:
+            image: postgres:latest
+            container_name: postgresDB
+            restart: unless-stopped
+            env_file: .env
+            environment:
+                - POSTGRES_USE = $PGUSER
+                - POSTGRES_PASSWORD = $PGPASSWORD
+                - POSTGRES_DB = $PGDATABASE
+            volumes:     
+                - postgredb:/var/lib/postgresql/data
+            ports:
+                - "6777:5432"
+            networks:
+                - FiBo

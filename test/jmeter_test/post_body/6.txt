@@ -1,0 +1,23 @@
+{
+  "projectName": "esempio",
+  "timeSeries": [
+    [
+      {
+        "tag": "kitchen",
+        "value": "temp"
+      }
+    ]
+  ],
+  "fleet": "flt-4urixvulkwxr",
+  "aggregationFunction": "mean",
+  "timeRange": {
+    "key": "hour",
+    "number": 1
+  },
+  "unit": "s",
+  "granularity": {
+    "key": "second",
+    "number": 30
+  },
+  "store": true
+}

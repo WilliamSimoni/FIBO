@@ -1,0 +1,44 @@
+{
+  "name": "fibo",
+  "version": "1.0.0",
+  "description": "mmi40 ",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "jest",
+    "start": "concurrently \"node  .\\stub\\index.js\" \"node  .\\calculator\\index.js\" \"node  .\\alarm\\alarmFinder\\index.js\" \"node  .\\alarm\\alarmSender\\index.js\" --kill-others"
+  },
+  "author": "William Simoni",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^4.0.1",
+    "btoa": "^1.2.1",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.0.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.4.0",
+    "extends-classes": "^1.0.5",
+    "helmet": "^3.22.0",
+    "influxdb-nodejs": "^3.1.0",
+    "ioredis": "^4.16.3",
+    "jsonwebtoken": "^8.5.1",
+    "mathjs": "^6.6.4",
+    "memoizee": "^0.4.14",
+    "moment": "^2.24.0",
+    "node-fetch": "^2.6.0",
+    "pg": "^8.0.3",
+    "poolifier": "^1.0.0",
+    "socket.io": "^2.3.0",
+    "sorted-array": "^2.0.4",
+    "uuid": "^7.0.3"
+  },
+  "devDependencies": {
+    "jest": "^25.1.0",
+    "nodemon": "^2.0.3",
+    "supertest": "^4.0.2"
+  }
+}

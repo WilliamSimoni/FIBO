@@ -1,0 +1,23 @@
+{
+  "projectName": "esempio",
+  "timeSeries": [
+    [
+      {
+        "tag": "safe",
+        "value": "movements"
+      }
+    ]
+  ],
+  "fleet": "flt-4urixvulkwxr",
+  "aggregationFunction": "sum",
+  "timeRange": {
+    "key": "hour",
+    "number": 1
+  },
+  "unit": "s",
+  "granularity": {
+    "key": "minute",
+    "number": 1
+  },
+  "store": true
+}
